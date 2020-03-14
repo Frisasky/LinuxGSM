@@ -96,6 +96,32 @@ fn_wipe_server_remove_files(){
 			fn_print_information_nl "No barren map save to remove"
 			fn_script_log_info "No barren map save to remove."
 		fi
+		# Wipe Hapis Island map.
+		if [ "$(find "${serveridentitydir}" -type f -name "hapisisland*.map")" ]; then
+			currentaction="Removing map file(s): ${serveridentitydir}/hapisisland*.map"
+			echo -en "Removing hapis island map hapisisland*.map file(s)..."
+			fn_sleep_time
+			fn_script_log "${currentaction}"
+			find "${serveridentitydir:?}" -type f -name "hapisisland*.map" -delete
+			fn_wipe_exit_code
+			fn_sleep_time
+		else
+			fn_print_information_nl "No hapis island map file to remove"
+			fn_script_log_info "No hapis island map file to remove."
+		fi
+		# Wipe Hapis Island map save.
+		if [ "$(find "${serveridentitydir}" -type f -name "hapisisland*.sav")" ]; then
+			currentaction="Removing barren map save(s): ${serveridentitydir}/hapisisland*.sav"
+			echo -en "Removing hapis island map saves hapisisland*.sav file(s)..."
+			fn_sleep_time
+			fn_script_log "${currentaction}"
+			find "${serveridentitydir:?}" -type f -name "hapisisland*.sav" -delete
+			fn_wipe_exit_code
+			fn_sleep_time
+		else
+			fn_print_information_nl "No hapis island map save to remove"
+			fn_script_log_info "No hapis island map save to remove."
+		fi
 		# Wipe user dir, might be a legacy thing, maybe to be removed.
 		if [ -d "${serveridentitydir}/user" ]; then
 			currentaction="Removing user directory: ${serveridentitydir}/user"
